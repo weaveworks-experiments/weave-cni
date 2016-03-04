@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net"
 	"net/http"
 
 	"github.com/appc/cni/pkg/skel"
@@ -44,7 +45,8 @@ func cmdAdd(args *skel.CmdArgs) error {
 	}
 	result := types.Result{
 		IP4: &types.IPConfig{
-			IP: *ipnet,
+			IP:      *ipnet,
+			Gateway: conf.Gateway,
 		},
 	}
 	return result.Print()
@@ -61,7 +63,8 @@ func cmdDel(args *skel.CmdArgs) error {
 }
 
 type ipamConf struct {
-	Subnet string `json:"subnet,omitempty"`
+	Subnet  string `json:"subnet,omitempty"`
+	Gateway net.IP `json:"gateway,omitempty"`
 }
 
 type netConf struct {
