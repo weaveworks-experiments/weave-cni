@@ -25,7 +25,7 @@ IPAM type. Here's an example:
 ```
 
 You should then be able to use `cnitool`, or other libCNI
-applications, to give containers as weave interface.
+applications, to give containers a weave interface.
 
 ## Building the plugin
 
